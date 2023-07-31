@@ -1,0 +1,23 @@
+<header>
+    <div class="logo">
+        <a href="/"><img src="/static/img/coffe-zern.png" alt=""></a>
+    </div>
+    <div class="header-menu">
+        <nav class="menu-items">
+            <ul>
+                <li class="menu-item"><a href="/">Головна</a></li>
+                <li class="menu-item"><a href="/product">Меню</a></li>
+                <li class="menu-item"><a href="/shake">Свій напій</a></li>
+                <li class="menu-item"><a href="/about">О нас</a></li>
+                {% if 'username' in session %}
+                    <li><a href="{{ url_for('profile') }}">Профіль</a></li>
+                    <li><a href="{{ url_for('logout') }}">Вийти</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Увійти</a></li>
+                    <li><a href="{{ url_for('register') }}">Зареєструватися</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
+</header>

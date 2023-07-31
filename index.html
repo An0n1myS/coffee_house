@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    {% include 'templates/header-links.html' %}
+
+</head>
+<body>
+
+{% include 'templates/header.html' %}
+
+    <div class="wrapper">
+        <div class="first">
+            <div class="left_block">
+                <div class="block-info">
+                    <div class="block-title">Гармонія смаку та атмосфери</div>
+                    <div class="block-description">Ідеальне місце для зустрічей з друзями, ділових обідів або простої насолоди затишною обстановкою.</div>
+                    <div class="block-button">Дізнатися більше</div>
+                </div>
+            </div>
+            <div class="right_block">
+                <img src="static/img/first-bg.jpg" alt="">
+            </div>
+        </div>
+        <div class="about_us">
+            <div class="block-panel">
+                <div class="text-block">
+                    <div class="text-block-title">О нас</div>
+                    <div class="text-block-description">Вітаємо вас у кафе "Cafe" - затишному місці, де сходяться смак та атмосфера. Ми пропонуємо вам насолодитися невимушеною обстановкою з відмінним вибором страв та напоїв</div>
+                </div>
+                <div class="img-block">
+                    <img src="static/img/about-block.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="we_on_map">
+            <div class="map-info">
+                <div class="map-info_title">Наше місце розташування</div>
+                <div class="map-info_description">Ласкаво просимо до унікального закладу "Cafe"! Ми пишаємось тим, що знаходимося за престижною адресою на вулиці Володимерська, 10, у самому серці прекрасного міста Київ. Будемо чекати на вас!</div>
+                <button class="map-info_button">Детальніше</button>
+            </div>
+        </div>
+        <div class="question">
+            <div class="question-info">
+                <div class="question-info_title">Питання</div>
+                <div class="question-info_description">Якщо у вас виникли питання або вам потрібна допомога у вирішенні будь-якої проблеми, будь ласка, заповніть форму зворотнього зв'язку. Наша команда постарається відповісти на ваші запитання та запропонувати рішення, яке допоможе нам впоратися із загальною проблемою.</div>
+            </div>
+            <div class="question-form">
+                <form action="">
+                    <input type="text" placeholder="Ім'я">
+                    <input type="email" placeholder="Пошта">
+                    <input type="text" placeholder="Телефон">
+                    <button type="submit">Відправити</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% include 'templates/footer.html' %}
+
+
+</body>
+</html>

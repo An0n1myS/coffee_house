@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+    {% include 'templates/header-links.html' %}
+</head>
+<body>
+{% include 'templates/header.html' %}
+    <div class="wrapper">
+      <!-- Заголовок сторінки -->
+        <h1>Ласкаво просимо до вашого профілю</h1>
+      <!-- Інформація про користувача -->
+        <div class="profile-info">
+          <h2>{{ user[1] }}</h2>
+          <p>Email: {{ user[3] }}</p>
+          <p>Телефон: {{ user[2] }}</p>
+          <p>Адреса: {{ user[5] }}</p>
+
+        </div>
+        <div class="order-history">
+            <h2>Історія замовлень</h2>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Дата</th>
+                    <th>Товари</th>
+                    <th>Сума</th>
+                    <th>Статус</th>
+                </tr>
+                {% for order, order_items in orders_with_items %}
+                    <tr>
+                        <td>{{ order[0] }}</td>
+                        <td>{{ order[1] }}</td>
+                        <td>
+                            {% for item in order_items %}
+                                {{ item[2] }} ({{ item[3] }} шт.),
+                            {% endfor %}
+                        </td>
+                        <td>{{ order[2] }} грн</td>
+                        <td>{{ order[3] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+{% include 'templates/footer.html' %}
+</body>
+</html>

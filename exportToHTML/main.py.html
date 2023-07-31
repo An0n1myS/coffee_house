@@ -1,0 +1,205 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">secrets</span>
+<span class="s0">import </span><span class="s1">base64</span>
+
+<span class="s0">from </span><span class="s1">flask </span><span class="s0">import </span><span class="s1">Flask</span><span class="s0">, </span><span class="s1">render_template</span><span class="s0">, </span><span class="s1">request</span><span class="s0">, </span><span class="s1">redirect</span><span class="s0">, </span><span class="s1">url_for</span><span class="s0">, </span><span class="s1">session</span>
+<span class="s0">import </span><span class="s1">pymysql</span>
+
+<span class="s1">app = Flask(__name__</span><span class="s0">, </span><span class="s1">template_folder=</span><span class="s2">&quot;./&quot;</span><span class="s1">)</span>
+
+<span class="s1">app.secret_key = secrets.token_hex(</span><span class="s3">16</span><span class="s1">)</span>
+
+<span class="s4"># Конфігурація бази даних</span>
+<span class="s1">db = pymysql.connect(host=</span><span class="s2">'localhost'</span><span class="s0">, </span><span class="s1">user=</span><span class="s2">'root'</span><span class="s0">, </span><span class="s1">password=</span><span class="s2">''</span><span class="s0">, </span><span class="s1">db=</span><span class="s2">'cafe_db'</span><span class="s0">, </span><span class="s1">charset=</span><span class="s2">'utf8mb4'</span><span class="s1">)</span>
+<span class="s1">cursor = db.cursor()</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">index():</span>
+    <span class="s4"># Отримання списку готелів з бази даних</span>
+
+    <span class="s1">user_id = </span><span class="s3">1</span>
+
+    <span class="s1">session[</span><span class="s2">'username'</span><span class="s1">] = user_id</span>
+
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'index.html'</span><span class="s1">)</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/shake'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">shake():</span>
+    <span class="s1">user_id = </span><span class="s3">1</span>
+
+    <span class="s1">session[</span><span class="s2">'username'</span><span class="s1">] = user_id</span>
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/shake.html'</span><span class="s1">)</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/about'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">about():</span>
+    <span class="s1">user_id = </span><span class="s3">1</span>
+
+    <span class="s1">session[</span><span class="s2">'username'</span><span class="s1">] = user_id</span>
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/about.html'</span><span class="s1">)</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/order'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">order():</span>
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM orders where User_ID = %s&quot;</span><span class="s0">, </span><span class="s1">(session[</span><span class="s2">'username'</span><span class="s1">]</span><span class="s0">,</span><span class="s1">))</span>
+    <span class="s1">order = cursor.fetchone()</span>
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM ordered_items where Order_ID = %s&quot;</span><span class="s0">, </span><span class="s1">(order[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">,</span><span class="s1">))</span>
+    <span class="s1">order_items = cursor.fetchall()</span>
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/order.html'</span><span class="s0">, </span><span class="s1">order=order</span><span class="s0">, </span><span class="s1">order_items=order_items)</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/profile'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">profile():</span>
+    <span class="s1">user_id = </span><span class="s3">1  </span><span class="s4"># Припустимо, що у вас є користувач з ID=1</span>
+
+    <span class="s1">session[</span><span class="s2">'username'</span><span class="s1">] = user_id</span>
+
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM users WHERE ID = %s&quot;</span><span class="s0">, </span><span class="s1">(session[</span><span class="s2">'username'</span><span class="s1">]</span><span class="s0">,</span><span class="s1">))</span>
+    <span class="s1">user = cursor.fetchone()</span>
+
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;&quot;&quot; 
+        SELECT orders.ID, orders.Date, orders.TotalAmount, order_status.Name FROM orders  
+        JOIN order_status ON orders.Status_ID = order_status.ID 
+        WHERE User_ID = %s 
+    &quot;&quot;&quot;</span><span class="s0">, </span><span class="s1">(session[</span><span class="s2">'username'</span><span class="s1">]</span><span class="s0">,</span><span class="s1">))</span>
+    <span class="s1">orders = cursor.fetchall()</span>
+
+    <span class="s1">orders_with_items = []</span>
+    <span class="s0">for </span><span class="s1">order </span><span class="s0">in </span><span class="s1">orders:</span>
+        <span class="s1">cursor.execute(</span><span class="s2">&quot;&quot;&quot; 
+            SELECT ordered_items.Order_ID, ordered_items.Item, product.Name, ordered_items.Quantity 
+            FROM ordered_items 
+            JOIN orders ON ordered_items.Order_ID = orders.ID 
+            JOIN product ON ordered_items.Item = product.ID 
+            WHERE ordered_items.Order_ID = %s 
+        &quot;&quot;&quot;</span><span class="s0">, </span><span class="s1">(order[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">,</span><span class="s1">))</span>
+        <span class="s1">order_items = cursor.fetchall()</span>
+        <span class="s1">orders_with_items.append((order</span><span class="s0">, </span><span class="s1">order_items))</span>
+
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/profile.html'</span><span class="s0">, </span><span class="s1">user=user</span><span class="s0">, </span><span class="s1">orders_with_items=orders_with_items)</span>
+
+
+
+<span class="s1">@app.route(</span><span class="s2">'/manager'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">manager():</span>
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM orders&quot;</span><span class="s1">)</span>
+    <span class="s1">orders  = cursor.fetchone()</span>
+
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/manager.html'</span><span class="s0">, </span><span class="s1">orders=orders)</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/product'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">product():</span>
+
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM categories&quot;</span><span class="s1">)</span>
+    <span class="s1">categories = cursor.fetchall()</span>
+
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM product&quot;</span><span class="s1">)</span>
+    <span class="s1">products = cursor.fetchall()</span>
+    <span class="s1">encoded_product = []</span>
+    <span class="s0">for </span><span class="s1">product </span><span class="s0">in </span><span class="s1">products:</span>
+        <span class="s1">photo_data = base64.b64encode(product[</span><span class="s3">4</span><span class="s1">]).decode(</span><span class="s2">'utf-8'</span><span class="s1">)</span>
+
+        <span class="s1">encoded_product.append((product[</span><span class="s3">0</span><span class="s1">]</span><span class="s0">, </span><span class="s1">product[</span><span class="s3">1</span><span class="s1">]</span><span class="s0">, </span><span class="s1">product[</span><span class="s3">2</span><span class="s1">]</span><span class="s0">, </span><span class="s1">product[</span><span class="s3">3</span><span class="s1">]</span><span class="s0">,</span><span class="s1">photo_data</span><span class="s0">, </span><span class="s1">product[</span><span class="s3">5</span><span class="s1">]))</span>
+
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/products.html'</span><span class="s0">, </span><span class="s1">categories=categories</span><span class="s0">, </span><span class="s1">products=encoded_product)</span>
+
+<span class="s1">@app.route(</span><span class="s2">'/product/&lt;int:product_id&gt;'</span><span class="s1">)</span>
+<span class="s0">def </span><span class="s1">product_item(product_id):</span>
+
+    <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM product where ID = %s&quot;</span><span class="s0">, </span><span class="s1">(product_id</span><span class="s0">,</span><span class="s1">))</span>
+    <span class="s1">product_s = cursor.fetchone()</span>
+    <span class="s1">photo_data = base64.b64encode(product_s[</span><span class="s3">4</span><span class="s1">]).decode(</span><span class="s2">'utf-8'</span><span class="s1">)</span>
+    <span class="s1">product = []</span>
+    <span class="s1">product.append(product_s[</span><span class="s3">0</span><span class="s1">])</span>
+    <span class="s1">product.append(product_s[</span><span class="s3">1</span><span class="s1">])</span>
+    <span class="s1">product.append(product_s[</span><span class="s3">2</span><span class="s1">])</span>
+    <span class="s1">product.append(product_s[</span><span class="s3">3</span><span class="s1">])</span>
+    <span class="s1">product.append(photo_data)</span>
+    <span class="s1">product.append(product_s[</span><span class="s3">5</span><span class="s1">])</span>
+    <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'pages/product_item.html'</span><span class="s0">, </span><span class="s1">product=product)</span>
+
+
+
+<span class="s4"># Сторінка авторизації</span>
+<span class="s1">@app.route(</span><span class="s2">'/login'</span><span class="s0">, </span><span class="s1">methods=[</span><span class="s2">'GET'</span><span class="s0">, </span><span class="s2">'POST'</span><span class="s1">])</span>
+<span class="s0">def </span><span class="s1">login():</span>
+    <span class="s0">if </span><span class="s1">request.method == </span><span class="s2">'POST'</span><span class="s1">:</span>
+        <span class="s1">email = request.form[</span><span class="s2">'email'</span><span class="s1">]</span>
+        <span class="s1">password = request.form[</span><span class="s2">'password'</span><span class="s1">]</span>
+
+        <span class="s4"># Перевірка введених даних з базою даних</span>
+        <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM users WHERE email = %s AND password = %s&quot;</span><span class="s0">, </span><span class="s1">(email</span><span class="s0">, </span><span class="s1">password))</span>
+        <span class="s1">user = cursor.fetchone()</span>
+
+        <span class="s0">if </span><span class="s1">user:</span>
+            <span class="s4"># Авторизація успішна, збереження ідентифікатора користувача у сесії</span>
+            <span class="s1">session[</span><span class="s2">'username'</span><span class="s1">] = user[</span><span class="s3">0</span><span class="s1">]</span>
+            <span class="s0">return </span><span class="s1">redirect(url_for(</span><span class="s2">'index'</span><span class="s1">))</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s4"># Авторизація невдала, повідомлення про помилку</span>
+            <span class="s1">error = </span><span class="s2">'Невірний електронний лист або пароль.'</span>
+            <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'templates/login.html'</span><span class="s0">, </span><span class="s1">error=error)</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'templates/login_form.html'</span><span class="s1">)</span>
+
+
+<span class="s4"># Сторінка реєстрації</span>
+<span class="s1">@app.route(</span><span class="s2">'/register'</span><span class="s0">, </span><span class="s1">methods=[</span><span class="s2">'GET'</span><span class="s0">, </span><span class="s2">'POST'</span><span class="s1">])</span>
+<span class="s0">def </span><span class="s1">register():</span>
+    <span class="s0">if </span><span class="s1">request.method == </span><span class="s2">'POST'</span><span class="s1">:</span>
+        <span class="s1">name = request.form[</span><span class="s2">'name'</span><span class="s1">]</span>
+        <span class="s1">email = request.form[</span><span class="s2">'email'</span><span class="s1">]</span>
+        <span class="s1">password = request.form[</span><span class="s2">'password'</span><span class="s1">]</span>
+        <span class="s1">country = request.form[</span><span class="s2">'country'</span><span class="s1">]</span>
+        <span class="s1">language = request.form[</span><span class="s2">'language'</span><span class="s1">]</span>
+
+        <span class="s4"># Перевірка, чи користувач з вказаним електронним листом вже існує</span>
+        <span class="s1">cursor.execute(</span><span class="s2">&quot;SELECT * FROM users WHERE email = %s&quot;</span><span class="s0">, </span><span class="s1">email)</span>
+        <span class="s1">existing_user = cursor.fetchone()</span>
+
+        <span class="s0">if </span><span class="s1">existing_user:</span>
+            <span class="s4"># Користувач вже існує, повідомлення про помилку</span>
+            <span class="s1">error = </span><span class="s2">'Користувач з таким електронним листом уже існує.'</span>
+            <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'templates/register_form.html'</span><span class="s0">, </span><span class="s1">error=error)</span>
+        <span class="s0">else</span><span class="s1">:</span>
+            <span class="s4"># Додавання нового користувача до бази даних</span>
+            <span class="s1">cursor.execute(</span><span class="s2">&quot;INSERT INTO users (name, email, password, country, language) VALUES (%s, %s, %s, %s, %s)&quot;</span><span class="s0">,</span>
+                           <span class="s1">(name</span><span class="s0">, </span><span class="s1">email</span><span class="s0">, </span><span class="s1">password</span><span class="s0">, </span><span class="s1">country</span><span class="s0">, </span><span class="s1">language))</span>
+            <span class="s1">db.commit()</span>
+
+            <span class="s0">return </span><span class="s1">redirect(url_for(</span><span class="s2">'login'</span><span class="s1">))</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'templates/register_form.html'</span><span class="s1">)</span>
+
+
+<span class="s1">@app.route(</span><span class="s2">'/logout'</span><span class="s0">, </span><span class="s1">methods=[</span><span class="s2">'GET'</span><span class="s0">, </span><span class="s2">'POST'</span><span class="s1">])</span>
+<span class="s0">def </span><span class="s1">logout():</span>
+    <span class="s0">if </span><span class="s1">request.method == </span><span class="s2">'POST'</span><span class="s1">:</span>
+
+        <span class="s1">session.pop(</span><span class="s2">'username'</span><span class="s0">, None</span><span class="s1">)</span>
+        <span class="s1">session.pop(</span><span class="s2">'user_id'</span><span class="s0">, None</span><span class="s1">)</span>
+
+        <span class="s0">return </span><span class="s1">redirect(</span><span class="s2">'/'</span><span class="s1">)</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s0">return </span><span class="s1">render_template(</span><span class="s2">'error.html'</span><span class="s1">)</span>
+
+
+<span class="s0">if </span><span class="s1">__name__ == </span><span class="s2">'__main__'</span><span class="s1">:</span>
+    <span class="s1">app.run(debug=</span><span class="s0">True</span><span class="s1">)</span>
+</pre>
+</body>
+</html>

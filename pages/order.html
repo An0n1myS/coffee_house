@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/order.css') }}">
+    {% include 'templates/header-links.html' %}
+</head>
+
+<body>
+
+    {% include 'templates/header.html' %}
+
+    <!-- Заголовок сторінки -->
+    <h1 class="page-title">Деталі Замовлення</h1>
+    <div class="order-conteiner">
+        <!-- Інформація про Замовлення -->
+        <div class="order-info">
+            <h2>Інформація про Замовлення</h2>
+            <p>Дата: {{ order[2] }}</p>
+            <p>Загальна Сума: {{ order[6] }}</p>
+        </div>
+
+        <!-- Список Замовлених Товарів -->
+        <div class="order-items">
+            <h2>Список Замовлених Товарів</h2>
+            <table class="order-items-table">
+                <tr>
+                    <th>Товар</th>
+                    <th>Кількість</th>
+                    <th>Ціна за Одиницю</th>
+                    <th>Option</th>
+                </tr>
+                {% for item in order_items %}
+                <tr>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>
+                    <td>{{ item[4] }}</td>
+                    <td>
+                        <form action="/delete_from_order" method="post">
+                            <input type="hidden" name="item" value="{{ item[0] }}">
+                            <input type="hidden" name="order_id" value="{{ order[0] }}">
+                            <button class="option-btn">x</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="order-info">
+            <form action="/confirm_order" method="post">
+                <!-- Вибір Способу Оплати та Доставки -->
+                <div class="payment-delivery-methods">
+                    <h3>Вибір Способу Оплати</h3>
+                    <select name="payment_method" class="payment-method-select">
+                        {% for payment in payments %}
+                        <option value="{{ payment[0] }}">{{ payment[1] }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <h3>Вибір Способу Доставки</h3>
+                    <select name="delivery_method" class="delivery-method-select">
+                        {% for delivery in deliveries %}
+                        <option value="{{ delivery[0] }}">{{ delivery[1] }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <!-- Поле для вводу адреси доставки -->
+                    <label for="delivery_address" class="delivery-address-label">Адреса Доставки:</label>
+                    <input type="hidden" name="id_order" value="{{ order[0] }}">
+                    <input type="text" id="delivery_address" name="delivery_address" required class="delivery-address-input">
+                </div>
+
+                <input type="submit" value="Оформити замовлення" class="order-confirm-button">
+            </form>
+        </div>
+
+        <br>
+        <br>
+
+    {% include 'templates/footer.html' %}
+    </div>
+</body>
+
+</html>

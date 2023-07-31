@@ -1,0 +1,130 @@
+.wrapper{
+    width: 90%;
+    margin: auto;
+}
+.product-category{
+    margin: auto;
+    width: 90%;
+}
+.product-category button {
+    width: 250px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #F5F5F5;
+
+    color: #000;
+    font-family: Montserrat;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.product-container{
+    display:none;
+}
+.product-category button:hover {
+    background: #6083FF;
+}
+.product-category .active {
+    background: #6083FF;
+    color: #fff;
+}
+.product-items div.active{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(4,auto);
+    margin: 30px 0;
+    border: 5px;
+}
+
+.product-item {
+    width: 330px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #F5F5F5;
+    padding: 15px;
+    margin: 10px 0;
+    border: 2px solid grey;
+}
+.product-item:hover {
+    transform: scale(1.007);
+}
+.product-item img {
+    width: 268px;
+    height: 256px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    margin-left: 15px;
+}
+
+.product-item_title{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 10px;
+}
+
+.product-item_price{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 10px;
+}
+
+.product-item {
+    position: relative; /* Додаємо position: relative; для контейнера .product-item */
+}
+
+.product-item form button.addToOrder-btn {
+    position: absolute;
+    margin: 15px;
+    top: 0; /* Відступ від верхньої межі блоку-батька */
+    right: 0; /* Відступ від правої межі блоку-батька */
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    width: 40px;
+    height: 35px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.product-item form button.addToOrder-btn:hover{
+    transform: scale(1.007);
+    background: #ccc;
+    color: black;
+    border: 1px solid black;
+}
+
+.btn-more button{
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 10px 20px;
+    flex-shrink: 0;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 10px;
+    margin-left: 65px;
+
+}
+
+.btn-more button:hover{
+    transform: scale(1.007);
+    background: #ccc;
+    color: black;
+}

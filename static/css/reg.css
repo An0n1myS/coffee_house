@@ -1,0 +1,63 @@
+/* style.css */
+.reg-form {
+  width: 300px;
+  margin: 3.25% auto;
+  background-color: #fff;
+  padding: 20px 50px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.reg-form .form-group {
+  margin-bottom: 20px;
+}
+
+.reg-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.reg-form input[type="text"],
+.reg-form input[type="email"],
+.reg-form input[type="password"] {
+  width: 90%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.reg-form button[type="submit"] {
+  background-color: #4CAF50;
+  width: 100%;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.reg-form button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.reg-form .error {
+  color: red;
+  margin-top: 10px;
+}
+
+.reg-form p {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.reg-form a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.reg-form a:hover {
+  text-decoration: underline;
+}

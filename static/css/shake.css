@@ -1,0 +1,88 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+}
+
+.ingredients-list {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ingredients-list h2 {
+    margin-bottom: 10px;
+}
+
+.ingredient {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    background-color: #6b8e23;
+    color: #fff;
+    border-radius: 20px;
+    cursor: grab;
+}
+
+.cocktail-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.cocktail {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.cocktail h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.glass {
+    width: 200px;
+    height: 300px;
+    border: 2px solid #ddd;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.ingredient-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    color: #aaa;
+}
+
+.clear-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #6b8e23;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background-color: #556b1c;
+}

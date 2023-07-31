@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/products.css') }}">
+    {% include 'templates/header-links.html' %}
+
+</head>
+<body>
+
+{% include 'templates/header.html' %}
+
+
+    <div class="wrapper">
+        <br>
+        <div class="product-category">
+            <button class="tab-button active" data-product="all">Всі товари</button>
+            {% for category in categories %}
+                <button class="tab-button" data-product="{{ category[0] }}">{{ category[1] }}</button>
+            {% endfor %}
+        </div>
+        <div class="product-items">
+
+            <div id="all-product" class="product-container active">
+                {% for product in products %}
+                <div class="product-item">
+                    <form action="">
+                        <input type="hidden" value="{{ product[0] }}">
+                        <input type="hidden" value="{{ session['username'] }}">
+                        <button class="addToOrder-btn">+</button>
+                    </form>
+                    <div class="product-item_img">
+                        <img src="data:image/jpeg;base64,{{ product[4] }}" alt="{{ product[1] }}">
+                    </div>
+                    <div class="product-item_title">{{ product[1] }}</div>
+                    <div class="product-item_price"><i>{{ product[3] }} грн.</i></div>
+                    <form class="btn-more" action="/product/{{ product[0] }}">
+                        <button type="submit">Детальніше</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+            <div id="1-product" class="product-container">
+                {% for product in products %}
+                {% if product[5]==1 %}
+                <div class="product-item">
+                    <form action="">
+                        <input type="hidden" value="{{ product[0] }}">
+                        <input type="hidden" value="{{ session['username'] }}">
+                        <button class="addToOrder-btn">+</button>
+                    </form>
+                    <div class="product-item_img">
+                        <img src="data:image/jpeg;base64,{{ product[4] }}" alt="{{ product[1] }}">
+                    </div>
+                    <div class="product-item_title">{{ product[1] }}</div>
+                    <div class="product-item_price"><i>{{ product[3] }} грн.</i></div>
+                    <form class="btn-more" action="/product/{{ product[0] }}">
+                        <button type="submit">Детальніше</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div id="2-product" class="product-container">
+                {% for product in products %}
+                {% if product[5]==2 %}
+                <div class="product-item">
+                    <form action="">
+                        <input type="hidden" value="{{ product[0] }}">
+                        <input type="hidden" value="{{ session['username'] }}">
+                        <button class="addToOrder-btn">+</button>
+                    </form>
+                    <div class="product-item_img">
+                        <img src="data:image/jpeg;base64,{{ product[4] }}" alt="{{ product[1] }}">
+                    </div>
+                    <div class="product-item_title">{{ product[1] }}</div>
+                    <div class="product-item_price"><i>{{ product[3] }} грн.</i></div>
+                    <form class="btn-more" action="/product/{{ product[0] }}">
+                        <button type="submit">Детальніше</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div id="3-product" class="product-container">
+                {% for product in products %}
+                {% if product[5]==3 %}
+                <div class="product-item">
+                    <form action="">
+                        <input type="hidden" value="{{ product[0] }}">
+                        <input type="hidden" value="{{ session['username'] }}">
+                        <button class="addToOrder-btn">+</button>
+                    </form>
+                    <div class="product-item_img">
+                        <img src="data:image/jpeg;base64,{{ product[4] }}" alt="{{ product[1] }}">
+                    </div>
+                    <div class="product-item_title">{{ product[1] }}</div>
+                    <div class="product-item_price"><i>{{ product[3] }} грн.</i></div>
+                    <form class="btn-more" action="/product/{{ product[0] }}">
+                        <button type="submit">Детальніше</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <div id="4-product" class="product-container">
+                {% for product in products %}
+                {% if product[5]==4 %}
+                <div class="product-item">
+                    <form action="">
+                        <input type="hidden" value="{{ product[0] }}">
+                        <input type="hidden" value="{{ session['username'] }}">
+                        <button class="addToOrder-btn">+</button>
+                    </form>
+                    <div class="product-item_img">
+                        <img src="data:image/jpeg;base64,{{ product[4] }}" alt="{{ product[1] }}">
+                    </div>
+                    <div class="product-item_title">{{ product[1] }}</div>
+                    <div class="product-item_price"><i>{{ product[3] }} грн.</i></div>
+                    <form class="btn-more" action="/product/{{ product[0] }}">
+                        <button type="submit">Детальніше</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+{% include 'templates/footer.html' %}
+<script>
+
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const productContainers = document.querySelectorAll('.product-container');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const categoryId = button.getAttribute('data-product');
+        setActiveTab(button);
+        showProductContainer(categoryId);
+      });
+    });
+
+    function setActiveTab(activeButton) {
+      tabButtons.forEach(button => {
+        button.classList.remove('active');
+      });
+      activeButton.classList.add('active');
+    }
+
+    function showProductContainer(categoryId) {
+      productContainers.forEach(container => {
+        container.classList.remove('active');
+      });
+      const productContainer = document.getElementById(categoryId + '-product');
+      productContainer.classList.add('active');
+    }
+
+</script>
+
+</body>
+</html>

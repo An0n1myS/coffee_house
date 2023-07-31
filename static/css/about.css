@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.about-us {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.about-us h1 {
+    font-size: 36px;
+}
+
+.about-us p {
+    font-size: 18px;
+}
+
+.team {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.team h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.team-member {
+    display: inline-block;
+    margin: 10px;
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+
+.team-member p {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.contact {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.contact h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    font-size: 18px;
+}
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product-item.css') }}">
+    {% include 'templates/header-links.html' %}
+
+</head>
+<body>
+
+{% include 'templates/header.html' %}
+
+  <div class="wrapper">
+    <div class="product-cart">
+      <div class="product-panel">
+        <div class="product-panel_img">
+          <img src="data:image/jpeg;base64,{{ product[4] }}" alt="{{ product[1] }}">
+        </div>
+        <div class="product-panel_info">
+          <div class="panel-info_title">{{ product[1] }}</div>
+          <div class="panel-info_price">{{ product[3] }} грн.</div>
+          <form action="" class="productToOrder">
+            <input type="hidden" value="{{ product[0] }}">
+            <input type="hidden" value="{{ session['username'] }}">
+            <button type="submit">До замовлення</button>
+          </form>
+        </div>
+      </div>
+      <div class="product-description">{{ product[2] }}</div>
+    </div>
+  </div>
+
+{% include 'templates/footer.html' %}
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Створити свій напій</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shake.css') }}">
+    {% include 'templates/header-links.html' %}
+</head>
+<body>
+    {% include 'templates/header.html' %}
+    <div class="container">
+        <div class="ingredients-list">
+            <h2>Інгредієнти</h2>
+            <div class="ingredient" draggable="true">Лайм</div>
+            <div class="ingredient" draggable="true">М'ята</div>
+            <div class="ingredient" draggable="true">Імбир</div>
+            <div class="ingredient" draggable="true">Ром</div>
+            <div class="ingredient" draggable="true">Сода</div>
+            <div class="ingredient" draggable="true">Цукор</div>
+            <div class="ingredient" draggable="true">Апельсин</div>
+            <div class="ingredient" draggable="true">Лимон</div>
+        </div>
+        <div class="cocktail-container">
+            <div class="cocktail">
+                <h2>Ваш коктейль</h2>
+                <div class="glass">
+                    <!-- Placeholder for the cocktail ingredients -->
+                </div>
+                <button class="clear-btn">Очистити інгредієнти</button>
+            </div>
+        </div>
+    </div>
+
+    {% include 'templates/footer.html' %}
+
+    <script>
+        const ingredients = document.querySelectorAll('.ingredient');
+        const glass = document.querySelector('.glass');
+        const clearBtn = document.querySelector('.clear-btn');
+
+        // Event listener for ingredient drag start
+        ingredients.forEach(ingredient => {
+            ingredient.addEventListener('dragstart', onDragStart);
+        });
+
+        // Event listener for glass drag over and drop
+        glass.addEventListener('dragover', onDragOver);
+        glass.addEventListener('drop', onDrop);
+
+        // Event listener for clear button click
+        clearBtn.addEventListener('click', clearGlass);
+
+        // Function to handle ingredient drag start
+        function onDragStart(event) {
+            event.dataTransfer.setData('text/plain', event.target.innerText);
+        }
+
+        // Function to handle glass drag over
+        function onDragOver(event) {
+            event.preventDefault();
+        }
+
+        // Function to handle ingredient drop
+        function onDrop(event) {
+            event.preventDefault();
+            const ingredientName = event.dataTransfer.getData('text/plain');
+            const ingredientPlaceholder = document.querySelector('.ingredient-placeholder');
+
+            if (ingredientPlaceholder) {
+                ingredientPlaceholder.remove();
+            }
+
+            const ingredientDiv = document.createElement('div');
+            ingredientDiv.innerText = ingredientName;
+            glass.appendChild(ingredientDiv);
+        }
+
+        // Function to handle clear button click
+        function clearGlass() {
+            glass.innerHTML = '<div class="ingredient-placeholder">Перетягніть інгредієнти сюди</div>';
+        }
+    </script>
+</body>
+</html>

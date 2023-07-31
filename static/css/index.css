@@ -1,0 +1,205 @@
+.wrapper{
+    width: 100%;
+    top:0;
+}
+.first{
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+}
+
+.left_block{
+    width:50%;
+    margin: auto;
+}
+.block-info{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.block-title{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 15px 0;
+}
+
+.block-description{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 15px 0;
+}
+
+.block-button{
+    text-align: center;
+    display: inline-block;
+    padding: 20px 40px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    margin: 15px 0;
+}
+
+
+.right_block{
+    width:50%;
+    background:#6083FF;
+}
+.right_block img{
+    width: 100%;
+}
+
+.about_us{
+    background:#6083FF;
+    height:100%;
+    padding: 100px 0;
+}
+.block-panel{
+    background: #FFF;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    width: 75.5%;
+    height: 600px;
+    padding: 5%
+
+}
+.text-block{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+}
+.text-block-title{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.text-block-description{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.img-block img{
+    height: 100%;
+}
+
+.we_on_map {
+    background-image: url('/static/img/index-map.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 700px;
+    display: flex;
+}
+
+.map-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+    background: #F5F5F5;
+    margin: auto 0;
+    padding: 5%;
+}
+.map-info_title{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 0 0 20px 0;
+}
+.map-info_description{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin: 20px 0;
+}
+.map-info_button{
+    margin: 20px 0;
+    border-radius: 15px;
+    padding:10px 20px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 26px;
+}
+
+
+.question{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: auto;
+    padding: 4.5%;
+}
+
+.question-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.question-info_title{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 65px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.question-info_description{
+    color: rgba(0, 0, 0, 0.85);
+    font-family: Montserrat;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.question-form input{
+    border: 2px solid #eee;
+    padding: 25px 30px;
+    font-size: 24px;
+    border-radius: 25px;
+    margin: 10px 0;
+}
+
+
+.question-form button{
+    border: 2px solid #eee;
+    padding: 25px 120px;
+    font-size: 24px;
+    border-radius: 25px;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.85);
+    color: #FFF;
+
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кав'ярня "Cafe" - О нас</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+      {% include 'templates/header-links.html' %}
+
+</head>
+
+<body>
+
+    {% include 'templates/header.html' %}
+
+
+    <div class="container">
+        <div class="about-us">
+            <h1>О нас</h1>
+            <p>
+                "Сafe" - це затишне місце, де ви можете насолодитися смачними напоями та свіжою випічкою. Наша кав'ярня знаходиться в центрі міста і завжди готова зустріти вас своєю теплою атмосферою та привітним персоналом.
+            </p>
+            <p>
+                Наше меню пропонує широкий вибір кавових напоїв, включаючи ароматну каву, освіжаючі лимонади та смачні фреші. Кожен напій готується з любов'ю та дбайливо відібраними інгредієнтами, щоб кожна крапля задовольнила ваші смакові рецептори.
+            </p>
+        </div>
+        <div class="team">
+            <h2>Наша команда</h2>
+            <div class="team-member">
+                <img src="static/img/worker1.jpg" alt="Учасник команди 1">
+                <p>Ім'я учасника команди 1</p>
+            </div>
+            <div class="team-member">
+                <img src="static/img/worker2.jpg" alt="Учасник команди 2">
+                <p>Ім'я учасника команди 2</p>
+            </div>
+            <div class="team-member">
+                <img src="static/img/worker3.jpg" alt="Учасник команди 3">
+                <p>Ім'я учасника команди 3</p>
+            </div>
+        </div>
+        <div class="contact">
+            <h2>Зв'язок</h2>
+            <p>Якщо у вас є питання або пропозиції, зв'яжіться з нами за телефоном: (XXX) XXX-XXXX або електронною поштою на адресу: info@cafe.com</p>
+        </div>
+    </div>
+
+    {% include 'templates/footer.html' %}
+
+
+
+</body>
+
+</html>

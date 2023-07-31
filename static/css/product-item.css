@@ -1,0 +1,69 @@
+.product-cart{
+    width: 80%;
+    margin: auto;
+}
+.product-panel {
+    display: flex;
+}
+
+.product-panel_info {
+    margin-left:1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.product-panel_img{
+    max-width: 550px;
+    max-height: 550px;
+    min-width: 550px;
+    min-height: 550px;
+}
+.product-panel_img img{
+    width: 550px;
+    height: 550px;
+}
+.panel-info_title{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.panel-info_price{
+    color: #000;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.productToOrder button{
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 15px 20px;
+}
+
+.product-description{
+
+    color: #000;
+    font-family: Montserrat;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-align:justify;
+    margin-bottom: 3%;
+    line-height: 1.5;
+    white-space: pre-wrap;
+
+}

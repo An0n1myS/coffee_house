@@ -1,0 +1,136 @@
+/* Загальні стилі для сторінки */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Заголовок сторінки */
+.page-title {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* Інформація про замовлення */
+.order-info {
+  margin: auto;
+
+  margin-top: 30px;
+}
+
+.order-info h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.order-info p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+
+
+.order-items {
+  background-color: #fff;
+  max-width: 600px;
+  margin: 20px 3%;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.order-items h2 {
+  color: #007bff;
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.order-items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-items-table th,
+.order-items-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.order-items-table th {
+  background-color: #f0f0f0;
+}
+
+.order-items-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.order-items-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Вибір способу оплати та доставки */
+.payment-method,
+.delivery-method {
+  margin-top: 30px;
+}
+
+.payment-method h3,
+.delivery-method h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.payment-method-select,
+.delivery-method-select {
+  padding: 10px;
+  width: 30%;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.delivery-address-label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.delivery-address-input {
+  padding: 10px;
+  width: 30%;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Кнопка підтвердження замовлення */
+.order-confirm-button {
+  background-color: #0366d6;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.order-conteiner{
+    width: 80%;
+    margin:auto;
+}
+.option-btn{
+    padding: 5px 10px;
+    color: white;
+    background: #A60000;
+    border:1px solid black;
+    border-radius: 13px;
+}
